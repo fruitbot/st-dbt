@@ -1,0 +1,5 @@
+st_dbt_project/target/
+st_dbt_project/dbt_packages/
+st_dbt_project/logs/
+dbt-env/
+logs/
