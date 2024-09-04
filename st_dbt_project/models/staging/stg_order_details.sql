@@ -4,6 +4,7 @@ with source as (
 
 transformed as (
     select 
+        row_number() over() as order_details_id,
         OrderID as order_id,
         ProductID as product_id,
         Quantity as order_details_quantity,

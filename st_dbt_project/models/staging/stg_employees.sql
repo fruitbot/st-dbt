@@ -6,7 +6,7 @@ transformed as (
     select 
         EmployeeID as employee_id,
         LastName as employee_lastname,
-        FirstName as employee_firstName,
+        FirstName as employee_firstname,
         Title as employee_title,
         City as employee_city,
         Country as employee_country,
