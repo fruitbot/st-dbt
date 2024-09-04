@@ -1,5 +1,5 @@
 with source as (
-    select * from `kering-onboarding`.`dataset_st_dbt`.`suppliers`
+    select * from {{ source('source_kering_onboarding', 'suppliers') }}
 ),
 
 transformed as (
@@ -10,7 +10,8 @@ transformed as (
         ContactTitle as supplier_contact_title,
         City as supplier_city,
         Country as supplier_country,
-        Phone as supplier_phone
+        Phone as supplier_phone,
+        current_timestamp() as ingested_at
     from source
 )
 

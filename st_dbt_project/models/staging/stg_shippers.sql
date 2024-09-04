@@ -1,12 +1,13 @@
 with source as (
-    select * from `kering-onboarding`.`dataset_st_dbt`.`shippers`
+    select * from {{ source('source_kering_onboarding', 'shippers') }}
 ),
 
 transformed as (
     select 
         ShipperID as shipper_id,
         CompanyName as shipper_company_name,
-        Phone as shipper_phone
+        Phone as shipper_phone,
+        current_timestamp() as ingested_at
     from source
 )
 

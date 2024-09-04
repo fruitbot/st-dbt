@@ -1,12 +1,13 @@
 with source as (
-    select * from `kering-onboarding`.`dataset_st_dbt`.`order_details`
+    select * from {{ source('source_kering_onboarding', 'order_details') }}
 ),
 
 transformed as (
     select 
         OrderID as order_id,
         ProductID as product_id,
-        Quantity as order_details_quantity
+        Quantity as order_details_quantity,
+        current_timestamp() as ingested_at
     from source
 )
 

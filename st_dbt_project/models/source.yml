@@ -1,0 +1,19 @@
+version: 2
+
+sources: 
+  - name: source_kering_onboarding
+    database: kering-onboarding
+    schema: dataset_st_dbt
+    freshness:
+      warn_after: {count: 15, period: day}
+      error_after: {count: 30, period: day}
+    loaded_at_field: loaded_at
+    tables:
+      - name: categories
+      - name: customers
+      - name: employees
+      - name: order_details
+      - name: orders
+      - name: products
+      - name: shippers
+      - name: suppliers

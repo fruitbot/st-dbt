@@ -1,5 +1,5 @@
 with source as (
-    select * from `kering-onboarding`.`dataset_st_dbt`.`employees`
+    select * from {{ source('source_kering_onboarding', 'employees') }}
 ),
 
 transformed as (
@@ -10,7 +10,8 @@ transformed as (
         Title as employee_title,
         City as employee_city,
         Country as employee_country,
-        Salary as employee_salary
+        Salary as employee_salary,
+        current_timestamp() as ingested_at
     from source
 )
 

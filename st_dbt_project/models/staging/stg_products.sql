@@ -1,5 +1,5 @@
 with source as (
-    select * from `kering-onboarding`.`dataset_st_dbt`.`products`
+    select * from {{ source('source_kering_onboarding', 'products') }}
 ),
 
 transformed as (
@@ -10,7 +10,8 @@ transformed as (
         CategoryID as category_id,
         UnitPrice as product_unit_price,
         UnitsInStock as product_unit_in_stock,
-        Discontinued as product_is_continued
+        Discontinued as product_is_continued,
+        current_timestamp() as ingested_at
     from source
 )
 

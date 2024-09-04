@@ -1,5 +1,5 @@
 with source as (
-    select * from `kering-onboarding`.`dataset_st_dbt`.`orders`
+    select * from {{ source('source_kering_onboarding', 'orders') }}
 ),
 
 transformed as (
@@ -9,11 +9,12 @@ transformed as (
         EmployeeID as employee_id,
         OrderDate as order_date,
         RequiredDate as order_required_date,
-        shippedDate as order_shipped_date,
+        cast(shippedDate as timestamp) as order_shipped_date,
         ShipVia as shipper_id,
         ShipName as ship_name,
         ShipCity as ship_city,
-        ShipCountry as ship_country
+        ShipCountry as ship_country,
+        current_timestamp() as ingested_at
     from source
 )
 

@@ -1,0 +1,10 @@
+version: 2
+
+models:
+    - name: stg_categories
+      columns:              
+          - name: category_id
+            tests:
+                - not_null
+                - unique
+
