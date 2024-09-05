@@ -1,8 +1,9 @@
 with final as (
     select 
         fact_sales.order_details_id,
-        fact_sales.order_details_quantity,
         fact_sales.order_id,
+        fact_sales.order_total_amount,
+        fact_sales.order_details_quantity,
         fact_sales.order_date,
         dim_customer.customer_id,
         dim_customer.customer_company_name,
