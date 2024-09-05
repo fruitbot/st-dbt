@@ -34,3 +34,5 @@ final as (
 )
 
 select * from final
+
+{{ limit_data_to_eu(column_name='ship_country') }}
