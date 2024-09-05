@@ -4,7 +4,7 @@ with source as (
 
 transformed as (
     select 
-        row_number() over() as order_details_id,
+        {{ dbt_utils.generate_surrogate_key(['OrderID', 'ProductID']) }} as order_details_id,
         OrderID as order_id,
         ProductID as product_id,
         Quantity as order_details_quantity,
