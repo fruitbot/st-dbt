@@ -33,6 +33,7 @@ models:
     staging:
       +materialized: table
       +schema: staging
+      +enabled: "{{ (target.name == 'dev') | as_bool }}"
     marts: 
       +materialized: table
       +schema: marts
