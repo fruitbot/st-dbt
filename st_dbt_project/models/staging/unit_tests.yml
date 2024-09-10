@@ -1,0 +1,13 @@
+unit_tests:
+  - name: test_employee_full_name
+    description: Test if full name is concatenated correctly.
+    model: stg_employees
+    given: 
+      - input: source('source_kering_onboarding', 'employees')
+        rows:
+          - {FirstName: Anne, LastName: Dodsworth}
+          - {FirstName: Testfirst, LastName: Testlast}
+    expect: 
+      rows:
+        - {employee_fullname: Anne Dodsworth}
+        - {employee_fullname: Testfirst Testlast}

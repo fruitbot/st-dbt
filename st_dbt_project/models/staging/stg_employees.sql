@@ -7,6 +7,7 @@ transformed as (
         EmployeeID as employee_id,
         LastName as employee_lastname,
         FirstName as employee_firstname,
+        concat(FirstName, ' ', LastName) as employee_fullname,
         Title as employee_title,
         City as employee_city,
         Country as employee_country,
