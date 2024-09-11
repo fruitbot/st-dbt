@@ -33,3 +33,35 @@ models:
       tests:
           - unique:
               column_name: "order_id || '-' || product_id"
+    - name: stg_products
+      columns:
+          - name: product_id
+            description: The primary key of products data.
+            tests:
+                - not_null
+                - unique
+    - name: stg_customers
+      columns:
+          - name: customer_id
+            description: The primary key of customers data.
+            tests:
+                - not_null
+                - unique
+    - name: stg_suppliers
+      columns:
+          - name: supplier_id
+            description: The primary key of suppliers data.
+            tests:
+                - unique
+    - name: stg_shippers
+      columns:
+          - name: shipper_id
+            description: The primary key of shippers data.
+            tests:
+                - unique
+    - name: stg_employees
+      columns:
+          - name: employee_id
+            description: The primary key of employees data.
+            tests:
+                - unique
