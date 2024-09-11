@@ -34,12 +34,26 @@ models:
           - unique:
               column_name: "order_id || '-' || product_id"
     - name: stg_products
+      tests: 
+        - dbt_utils.expression_is_true:
+            name: test1_product_price_more_than_zero
+            expression: "product_unit_price >= 0"
       columns:
           - name: product_id
             description: The primary key of products data.
             tests:
                 - not_null
                 - unique
+          - name: product_unit_price
+            tests:
+              - dbt_expectations.expect_column_values_to_be_between: 
+                  name: test2_product_price_more_than_zero
+                  min_value: 0
+                  row_condition: "product_id is not null" 
+                  strictly: false
+              - dbt_expectations.expect_column_mean_to_be_between: 
+                  min_value: 1
+                  strictly: false
     - name: stg_customers
       columns:
           - name: customer_id
