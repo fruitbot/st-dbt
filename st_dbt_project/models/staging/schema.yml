@@ -30,9 +30,27 @@ models:
                   quote: false
     - name: stg_order_details
       description: It contains order details data. One row per order detail.
+      config:
+        elementary:
+          timestamp_column: "ingested_at"  
       tests:
           - unique:
               column_name: "order_id || '-' || product_id"
+          - elementary.volume_anomalies:
+              name: elementary_volume_anomalies
+              where_expression: "product_id != 0"
+              time_bucket:
+                period: hour
+                count: 1
+              training_period:
+                period: hour
+                count: 5
+              detection_period:
+                period: hour
+                count: 1
+              tags: ["elementary"]
+              config:
+                severity: warn
     - name: stg_products
       tests: 
         - dbt_utils.expression_is_true:
